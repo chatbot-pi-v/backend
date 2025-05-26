@@ -12,6 +12,7 @@ export class QuestionClient {
     try {
       const response = await axios.post<QuestionResponse>(this.endpoint, { question });
 
+      console.log('response = ', response);
       return response.data;
     } catch (error) {
       console.error('Erro ao enviar pergunta:', error);
