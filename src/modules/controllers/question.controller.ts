@@ -19,19 +19,26 @@ export class QuestionController {
 
     try {
       const response = await this.question.sendQuestionClient(question);
-      console.log('response = ', response)
 
-      const answer = response.answer;
+      const { answer, image_base64, image_caption } = response;
+      console.log('answer = ', answer)
+      // const answer = response.answer;
       
-      const questionData = {
-        question,
+      // const questionData = {
+      //   question,
+      //   answer,
+      //   timestamp: new Date(),
+      // };
+
+      
+
+      // await this.firebaseService.createDocument('questions', questionData);
+
+      return {
         answer,
-        timestamp: new Date(),
+        image_base64,
+        image_caption,
       };
-
-      await this.firebaseService.createDocument('questions', questionData);
-
-      return response;
     } catch (error) {
       console.error('Erro ao processar pergunta:', error);
       throw error;
